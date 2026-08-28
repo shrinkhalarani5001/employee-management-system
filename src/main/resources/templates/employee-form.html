@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${employee.id == null ? 'Add Employee' : 'Edit Employee'}">
+        Employee Form
+    </title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #198754;
+        }
+
+        .buttons {
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #198754;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #157347;
+        }
+
+        .back {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .back:hover {
+            background: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 th:text="${employee.id == null ? 'Add Employee' : 'Edit Employee'}">
+        Employee Form
+    </h1>
+
+    <form th:action="@{/employees/save}"
+          th:object="${employee}"
+          method="post">
+
+        <!--
+            Important:
+            ID is automatically generated for new employees.
+            During editing, the existing ID is submitted so the
+            existing employee is updated instead of creating a new one.
+        -->
+        <input type="hidden" th:field="*{id}">
+
+
+        <div class="form-group">
+
+            <label for="name">
+                Name
+            </label>
+
+            <input type="text"
+                   id="name"
+                   th:field="*{name}"
+                   placeholder="Enter employee name"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input type="email"
+                   id="email"
+                   th:field="*{email}"
+                   placeholder="Enter email"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="department">
+                Department
+            </label>
+
+            <input type="text"
+                   id="department"
+                   th:field="*{department}"
+                   placeholder="Enter department"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="position">
+                Position
+            </label>
+
+            <input type="text"
+                   id="position"
+                   th:field="*{position}"
+                   placeholder="Enter position"
+                   required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="salary">
+                Salary
+            </label>
+
+            <input type="number"
+                   id="salary"
+                   step="0.01"
+                   th:field="*{salary}"
+                   placeholder="Enter salary"
+                   required>
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button type="submit"
+                    th:text="${employee.id == null ? 'Save Employee' : 'Update Employee'}">
+                Save Employee
+            </button>
+
+            <a href="/employees"
+               class="back">
+                Back to Employees
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
