@@ -57,6 +57,17 @@ src/
 │       │   ├── index.html
 │       │   └── login.html
 │       └── application.properties
+
+## Application Screenshots
+
+### Login Page
+
+![Login Page](Login.png)
+
+### Employee Management
+
+![Employee Management](Employment.png)
+
 │
 ├── test/
 │
